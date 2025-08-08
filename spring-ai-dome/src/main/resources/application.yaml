@@ -15,7 +15,7 @@ spring:
 #        model: deepseek-r1:7b
     openai:
       base-url: https://dashscope.aliyuncs.com/compatible-mode
-      api-key: sk-812215163f56401996b3fb9075daa62d
+      api-key: 
       chat:
         options:
           model: qwen-plus
