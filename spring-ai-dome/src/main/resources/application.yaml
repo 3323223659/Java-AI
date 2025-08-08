@@ -1,0 +1,34 @@
+server:
+  tomcat:
+    max-swallow-size: -1     # 禁用Tomcat的请求大小限制（或设为足够大的值，如100MB）
+spring:
+  application:
+    name: heima-ai
+  servlet:
+    multipart:
+      max-file-size: 50MB    # 单个文件限制
+      max-request-size: 100MB # 单次请求总限制
+  ai:
+#    ollama:
+#      base-url: http://localhost:11434
+#      chat:
+#        model: deepseek-r1:7b
+    openai:
+      base-url: https://dashscope.aliyuncs.com/compatible-mode
+      api-key: sk-812215163f56401996b3fb9075daa62d
+      chat:
+        options:
+          model: qwen-plus
+      embedding:
+        options:
+          model: text-embedding-v3
+          dimensions: 1024
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/heima-ai?serverTimezone=Asia/Shanghai&useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&tinyInt1isBit=false&allowPublicKeyRetrieval=true&allowMultiQueries=true&useServerPrepStmts=false
+    username: root
+    password: 1234
+logging:
+  level:
+    org.springframework.ai: debug
+    com.itheima.ai: debug

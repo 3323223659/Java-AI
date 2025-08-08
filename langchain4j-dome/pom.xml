@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 父项目：Spring Boot Starter Parent提供依赖管理和默认配置 -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.3</version>  <!-- Spring Boot 3.x 最新稳定版 -->
+        <relativePath/> <!-- 优先从本地仓库查找 -->
+    </parent>
+
+    <!-- 项目基础信息 -->
+    <groupId>com.itheima</groupId>
+    <artifactId>consultant</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>consultant</name>
+    <description>AI咨询师系统（集成LangChain4j）</description>
+
+    <!-- JDK版本要求 -->
+    <properties>
+        <java.version>17</java.version>  <!-- Spring Boot 3.x 最低要求JDK 17 -->
+    </properties>
+
+    <!-- 项目依赖 -->
+    <dependencies>
+        <!-- 1. Spring Boot基础依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>  <!-- 传统Web MVC支持 -->
+        </dependency>
+
+        <!-- 2. 测试依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>  <!-- 仅测试阶段使用 -->
+        </dependency>
+
+        <!-- 3. LangChain4j核心依赖（OpenAI集成） -->
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-open-ai-spring-boot-starter</artifactId>
+            <version>1.0.1-beta6</version>  <!-- OpenAI官方适配器 -->
+        </dependency>
+
+        <!-- 4. LangChain4j服务层支持 -->
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-spring-boot-starter</artifactId>
+            <version>1.0.1-beta6</version>  <!-- 提供AiServices等注解支持 -->
+        </dependency>
+
+        <!-- 5. 响应式编程支持（流式API必需） -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>  <!-- Reactor + Netty -->
+        </dependency>
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-reactor</artifactId>
+            <version>1.0.1-beta6</version>  <!-- 流式响应适配器 -->
+        </dependency>
+
+        <!-- 6. 数据持久化 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>  <!-- Redis缓存/会话 -->
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>3.0.3</version>  <!-- MyBatis SQL映射 -->
+        </dependency>
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>  <!-- MySQL驱动（8.x） -->
+        </dependency>
+
+        <!-- 7. RAG（检索增强生成）支持 -->
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-easy-rag</artifactId>
+            <version>1.0.1-beta6</version>  <!-- 简化RAG实现 -->
+        </dependency>
+
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-document-parser-apache-pdfbox</artifactId>
+            <version>1.0.1-beta6</version>  <!-- PDF文档解析 -->
+        </dependency>
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-community-redis-spring-boot-starter</artifactId>
+            <version>1.0.1-beta6</version>  <!-- Redis向量数据库支持 -->
+        </dependency>
+
+        <!-- 8. 开发工具 -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>  <!-- 注解简化代码 -->
+            <scope>provided</scope>  <!-- 编译期使用 -->
+        </dependency>
+    </dependencies>
+
+    <!-- 构建配置 -->
+    <build>
+        <plugins>
+            <!-- Spring Boot Maven插件（支持可执行JAR） -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

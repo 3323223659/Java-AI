@@ -1,0 +1,44 @@
+server:
+  port: 8080  # 应用服务端口
+  servlet:
+    encoding:
+      charset: UTF-8  # 强制使用UTF-8编码
+      enabled: true   # 启用编码过滤器
+      force: true     # 强制响应使用配置的字符集
+
+spring:
+  ai:
+    mcp:
+      client:
+        request-timeout: 60000  # MCP请求超时时间（毫秒），建议生产环境根据业务调整
+        stdio:
+          # 1. 推荐将服务器配置分离到独立JSON文件（模块化管理）
+          # 文件格式需符合Claude Desktop规范，支持多服务器配置
+          servers-configuration: classpath:/mcp/mcp-servers-config.json
+
+        sse:
+          connections:
+            UserSSEInfo:  # 连接名称（可自定义）
+              url: http://localhost:8088  # SSE服务基础URL
+              # sse-endpoint: /custom-sse  # 可选的SSE端点路径（默认/sse）
+
+          # 2. 替代方案：直接内联配置（适合简单场景）
+          # 注意：复杂命令建议使用外部JSON文件
+          # connections:
+          #   baidu-map:
+          #     command: cmd
+          #     args:
+          #       - /c
+          #       - npx
+          #       - -y
+          #       - @baidumap/mcp-server-baidu-map
+          #     env:
+          #       BAIDU_MAP_API_KEY: LEyBQxG9UzR9C1GZ6zDHsFDVKvBem2do
+
+# 调试日志配置
+logging:
+  level:
+    io:
+      modelcontextprotocol:
+        client: DEBUG  # 启用MCP客户端详细日志
+        spec: DEBUG    # 启用协议规范级日志（含请求/响应详情）

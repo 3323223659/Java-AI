@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 继承自自定义父项目，统一管理版本号 -->
+    <parent>
+        <groupId>com.xs.springai</groupId>
+        <artifactId>spring-ai-parent</artifactId>
+        <version>0.0.1-xs</version>
+        <relativePath/> <!-- 优先从本地路径查找 -->
+    </parent>
+
+    <!-- 当前项目基础信息 -->
+    <groupId>com.xs</groupId>
+    <artifactId>spring-ai-agent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>spring-ai-agent</name>
+    <description>spring-ai-agent</description>
+
+    <!-- 自定义属性 -->
+    <properties>
+        <java.version>17</java.version>  <!-- 要求JDK 17+ -->
+        <spring-ai.version>1.0.0</spring-ai.version>  <!-- Spring AI基础版本 -->
+        <spring-ai-alibaba.version>1.0.0.2</spring-ai-alibaba.version>  <!-- 阿里云AI扩展版本 -->
+    </properties>
+
+    <!-- 主要依赖项 -->
+    <dependencies>
+        <!-- Spring Boot Web支持 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- 阿里云DashScope大模型集成 -->
+        <dependency>
+            <groupId>com.alibaba.cloud.ai</groupId>
+            <artifactId>spring-ai-alibaba-starter-dashscope</artifactId>
+        </dependency>
+
+        <!-- 多模型支持 -->
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-starter-model-deepseek</artifactId>  <!-- 深度求索模型 -->
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-starter-model-ollama</artifactId>  <!-- 本地Ollama模型 -->
+        </dependency>
+
+        <!-- 测试依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- 对话记忆存储（JDBC实现） -->
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-starter-model-chat-memory-repository-jdbc</artifactId>
+        </dependency>
+    </dependencies>
+
+    <!-- 依赖管理（BOM导入） -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- Spring AI官方BOM -->
+            <dependency>
+                <groupId>org.springframework.ai</groupId>
+                <artifactId>spring-ai-bom</artifactId>
+                <version>${spring-ai.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- 阿里云AI BOM -->
+            <dependency>
+                <groupId>com.alibaba.cloud.ai</groupId>
+                <artifactId>spring-ai-alibaba-bom</artifactId>
+                <version>${spring-ai-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- 构建配置 -->
+    <build>
+        <plugins>
+            <!-- Spring Boot打包插件 -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

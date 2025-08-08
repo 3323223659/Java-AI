@@ -1,0 +1,11 @@
+spring:
+  main:
+    web-application-type: none
+    banner-mode: off
+  ai:
+    mcp:
+      server:
+        name: my-weather-server
+        version: 0.0.1
+
+# 注意：您必须禁用横幅和控制台日志记录，以允许 STDIO 传输!!工作  banner-mode: off

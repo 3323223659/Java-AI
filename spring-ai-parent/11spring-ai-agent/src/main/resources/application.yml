@@ -1,0 +1,7 @@
+spring:
+  ai:
+    deepseek:
+      api-key: ${DEEP_SEEK_KEY}
+      chat:
+        options:
+          model: deepseek-chat

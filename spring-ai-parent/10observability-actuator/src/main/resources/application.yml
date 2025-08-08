@@ -1,0 +1,9 @@
+# Spring AI 可观测性配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"  # 暴露所有Actuator端点（生产环境建议按需开放）
+  endpoint:
+    health:
+      show-details: always  # 始终显示健康检查详情（包括组件状态）

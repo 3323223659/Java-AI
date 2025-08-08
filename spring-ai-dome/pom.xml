@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                            https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!-- 基础POM配置 -->
+    <modelVersion>4.0.0</modelVersion> <!-- Maven模型版本 -->
+
+    <!-- 继承Spring Boot父POM，提供默认依赖管理 -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.3</version> <!-- Spring Boot版本 -->
+        <relativePath/> <!-- 优先从本地仓库查找 -->
+    </parent>
+
+    <!-- 项目坐标信息 -->
+    <groupId>com.itheima</groupId>
+    <artifactId>heima-ai</artifactId>
+    <version>0.0.1-SNAPSHOT</version> <!-- SNAPSHOT表示开发中版本 -->
+    <name>heima-ai</name>
+    <description>AI功能集成项目</description>
+
+    <!-- 项目元信息（当前为空模板） -->
+    <url/>
+    <licenses><license/></licenses>
+    <developers><developer/></developers>
+    <scm>
+        <connection/>
+        <developerConnection/>
+        <tag/>
+        <url/>
+    </scm>
+
+    <!-- 自定义属性 -->
+    <properties>
+        <java.version>17</java.version> <!-- JDK版本要求 -->
+        <spring-ai.version>1.0.0-M6</spring-ai.version> <!-- Spring AI里程碑版本 -->
+    </properties>
+
+    <!-- 项目依赖 -->
+    <dependencies>
+        <!-- Spring Boot Web支持 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- AI相关依赖 -->
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-ollama-spring-boot-starter</artifactId> <!-- Ollama集成 -->
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-openai-spring-boot-starter</artifactId> <!-- OpenAI集成 -->
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-pdf-document-reader</artifactId> <!-- PDF文档处理 -->
+        </dependency>
+
+        <!-- 数据库相关 -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope> <!-- 仅运行时需要 -->
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+            <version>3.5.10.1</version> <!-- MyBatis增强工具 -->
+        </dependency>
+
+        <!-- 开发工具 -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.22</version> <!-- 注解简化代码 -->
+            <scope>provided</scope> <!-- 编译期使用 -->
+        </dependency>
+
+        <!-- 测试依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <!-- 依赖管理（统一Spring AI家族版本） -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.ai</groupId>
+                <artifactId>spring-ai-bom</artifactId>
+                <version>${spring-ai.version}</version>
+                <type>pom</type>
+                <scope>import</scope> <!-- 导入BOM管理版本 -->
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- 构建配置 -->
+    <build>
+        <plugins>
+            <!-- Spring Boot打包插件 -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

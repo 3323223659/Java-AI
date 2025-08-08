@@ -1,0 +1,53 @@
+langchain4j:
+  open-ai:
+    # 聊天模型配置（同步调用）
+    chat-model:
+      base-url: https://dashscope.aliyuncs.com/compatible-mode/v1  # 阿里云Dashscope兼容模式端点
+      api-key: ${API-KEY}  # 从环境变量读取API密钥（生产环境推荐）
+      model-name: qwen-plus  # 使用通义千问Plus模型
+      log-requests: true  # 记录请求日志（调试用）
+      log-responses: true  # 记录响应日志（调试用）
+
+    # 流式聊天模型配置（SSE协议）
+    streaming-chat-model:
+      base-url: https://dashscope.aliyuncs.com/compatible-mode/v1  # 与同步接口分离配置
+      api-key: ${API-KEY}
+      model-name: qwen-plus  # 流式模型需与同步模型一致
+      log-requests: true  # 流式请求日志
+      log-responses: true  # 流式响应日志
+
+    # 向量嵌入模型配置（RAG场景）
+    embedding-model:
+      base-url: https://dashscope.aliyuncs.com/compatible-mode/v1  # 独立嵌入模型端点
+      api-key: ${API-KEY}
+      model-name: text-embedding-v3  # 阿里云文本嵌入模型
+      log-requests: true  # 嵌入请求日志
+      log-responses: true  # 嵌入响应日志
+      max-segments-per-batch: 10  # 批量处理分段数（优化内存）
+
+  # Redis社区扩展配置（向量存储/对话记忆）
+  community:
+    redis:
+      host: localhost  # Redis服务器地址
+      port: 6379  # Redis端口
+
+logging:
+  level:
+    dev.langchain4j: debug  # 启用LangChain4j调试日志（含工具调用细节）
+
+spring:
+  data:
+    redis:
+      host: localhost  # Spring Redis连接（与LangChain4j共用）
+      port: 6379  # 默认端口
+
+  # MySQL数据源配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver  # JDBC驱动
+    url: jdbc:mysql://localhost:3307/volunteer?serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true  # 时区与安全设置
+    username: root
+    password: 1234  # 生产环境建议使用Vault加密
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true  # 字段名自动转换（下划线→驼峰）
