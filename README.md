@@ -4,6 +4,8 @@
 
 本项目是一个综合性的 AI 大模型应用学习项目，包含了 Spring AI 和 LangChain4j 两个主流 Java AI 框架的完整学习示例。项目通过多个模块展示了从基础聊天到高级 AI Agent、RAG（检索增强生成）、工具调用等核心功能的实现，适合 Java 开发者学习和实践 AI 应用开发。
 
+详细说明参考csdn文档：https://blog.csdn.net/2302_79380280?spm=1011.2415.3001.5343
+
 ## 技术架构
 
 - **AI 框架**：Spring AI、LangChain4j
