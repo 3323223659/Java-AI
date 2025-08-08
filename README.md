@@ -4,6 +4,8 @@
 
 本项目是一个综合性的 AI 大模型应用学习项目，包含了 Spring AI 和 LangChain4j 两个主流 Java AI 框架的完整学习示例。项目通过多个模块展示了从基础聊天到高级 AI Agent、RAG（检索增强生成）、工具调用等核心功能的实现，适合 Java 开发者学习和实践 AI 应用开发。
 
+详细说明参考csdn文档：https://blog.csdn.net/2302_79380280?spm=1011.2415.3001.5343
+
 ## 技术架构
 
 - **AI 框架**：Spring AI、LangChain4j
@@ -36,6 +38,7 @@ ai-learning-projects/
 ├── spring-ai-dome/                # Spring AI 综合演示项目
 │   ├── src/main/java/             # Java 源码
 │   ├── src/main/resources/        # 配置文件和静态资源
+|   ├── 前端代码                    # 该项目前端代码
 │   └── pom.xml                    # Maven 配置
 ├── langchain4j/                   # LangChain4j 学习项目目录
 │   └── langchain4j_springboot/    # LangChain4j + Spring Boot 集成
@@ -122,6 +125,10 @@ spring.ai.openai.api-key=${OPENAI_API_KEY}
    ```bash
    cd spring-ai-parent/01quick-start
    mvn spring-boot:run
+   ```
+4. spring-ai-dome里的前端代码需要下载后再启动
+   ```bash
+   npm install
    ```
 
 ### 4. 模块说明

@@ -86,7 +86,7 @@ public class ChatController {
      * @return 聊天响应
      */
     @RequestMapping(value = "/memory_chat")
-    public String memoryChat(@RequestParam(defaultValue="我叫徐庶") String message) {
+    public String memoryChat(@RequestParam(defaultValue="我叫小小") String message) {
         return assistant.chat(message); // 自动维护对话历史
     }
 
