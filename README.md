@@ -38,6 +38,7 @@ ai-learning-projects/
 ├── spring-ai-dome/                # Spring AI 综合演示项目
 │   ├── src/main/java/             # Java 源码
 │   ├── src/main/resources/        # 配置文件和静态资源
+|   ├── 前端代码                    # 该项目前端代码
 │   └── pom.xml                    # Maven 配置
 ├── langchain4j/                   # LangChain4j 学习项目目录
 │   └── langchain4j_springboot/    # LangChain4j + Spring Boot 集成
@@ -124,6 +125,10 @@ spring.ai.openai.api-key=${OPENAI_API_KEY}
    ```bash
    cd spring-ai-parent/01quick-start
    mvn spring-boot:run
+   ```
+4. spring-ai-dome里的前端代码需要下载后再启动
+   ```bash
+   npm install
    ```
 
 ### 4. 模块说明
